@@ -1,2 +1,3 @@
-# Project-MessageBoard
-This repo is created for the sole purpose of storing the files used to create the project of "Boilerplate-Project-MessageBoard" in order to submit in freeCodeCamp
+# Anonymous Message Board
+
+This is the boilerplate for the Anonymous Message Board project. Instructions for completing your project can be found at https://www.freecodecamp.org/learn/information-security/information-security-projects/anonymous-message-board

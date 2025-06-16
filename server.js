@@ -3,7 +3,8 @@ require('dotenv').config();
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
-const mongoose = require('mongoose');
+const mongoose    = require('mongoose');
+const helmet      = require('helmet');
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
@@ -20,6 +21,20 @@ mongoose.connect(process.env.DB, {
 });
 
 const app = express();
+
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://code.jquery.com"],
+      styleSrc: ["'self'", "https://fonts.googleapis.com"],
+      frameAncestors: ["'self'"], // ✅ Only allow iframes on your own pages
+    }
+  }
+}));
+
+app.use(helmet.dnsPrefetchControl({ allow: false })); // ❌ Block DNS prefetch
+app.use(helmet.referrerPolicy({ policy: 'same-origin' })); // ✅ Only send referrer to same-origin
 
 app.use('/public', express.static(process.cwd() + '/public'));
 

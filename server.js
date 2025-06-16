@@ -19,6 +19,7 @@ mongoose.connect(process.env.DB, {
 }).catch(err => {
   console.error('MongoDB connection error:', err);
 });
+console.log('MONGO_URI:', process.env.DB);
 
 const app = express();
 
